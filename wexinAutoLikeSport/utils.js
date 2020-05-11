@@ -28,7 +28,9 @@ function unlockDevice() {
   waitForPackage('com.android.systemui')
 
   /* 下滑手势呼出状态栏 */
-  swipe(deviceWidth / 2, 10, deviceWidth / 2, deviceHeight * 2 / 3, 250)
+  // swipe(deviceWidth / 2, 10, deviceWidth / 2, deviceHeight * 2 / 3, 250)
+  /* 这里改用直接显示快速设置 API */
+  quickSettings()
 
   /* 点击设置按钮，呼出解锁页面 */
   desc('设置').findOne().click()
@@ -59,7 +61,7 @@ function lockDevice() {
     .parent()
     .click()
 }
-unlockDevice()
+
 module.exports = {
   lockDevice: lockDevice,
   unlockDevice: unlockDevice,
