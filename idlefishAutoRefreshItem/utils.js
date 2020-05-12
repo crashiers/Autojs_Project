@@ -9,17 +9,12 @@ setScreenMetrics(designedWidth, designedHeight)
 /* 解锁设备，适用于手机处于锁屏状态，且解锁方式为指定的手势解锁方案 */
 function unlockDevice() {
   /* 手机屏幕开着且不处于解锁页面，则手机没有锁屏，直接返回 */
-  while (true) {
-    if (device.isScreenOn() && currentPackage() !== 'com.android.systemui') {
-      if (confirm('设定的程序即将执行')) return
-      else exit()
-    } else {
-      device.wakeUpIfNeeded()
-      sleep(500)
-
-      /* 执行唤醒操作后查看是否真正唤醒了，如果没有则继续执行唤醒动作 */
-      if (device.isScreenOn()) break
-    }
+  if (device.isScreenOn() && currentPackage() !== 'com.android.systemui') {
+    if (confirm('设定的程序即将执行')) return
+    else exit()
+  } else {
+    device.wakeUpIfNeeded()
+    sleep(500)
   }
 
   /* 阻塞等待手机被唤醒 */
