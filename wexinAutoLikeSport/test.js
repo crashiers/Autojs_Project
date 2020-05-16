@@ -161,8 +161,8 @@ let designedHeight = 2248 // 设计代码时的屏幕高度
 // .findOne()
 // .parent()
 // .click()
-log(currentPackage())
-log(currentActivity())
+// log(currentPackage())
+// log(currentActivity())
 // dialogs.build({
 //   /* 对话框标题 */
 //   title: "设定的程序即将执行",
@@ -179,3 +179,67 @@ log(currentActivity())
   
 // }).show()
 // log(121313131)
+// app.launch('com.tencent.mm')
+// app.startActivity({
+//   packageName: "com.tencent.mm",
+//   className: "com.tencent.mm.ui.LauncherUI",
+// })
+// let findAndAddIcon = images.read('./assets/find-and-add-icon.jpg') ||　images.read('wexinAutoLikeSport/assets/find-and-add-icon.jpg')
+// log(images.matchTemplate(images.captureScreen(), bottombar).best())
+// bottombar.recycle()
+// while (!images.matchTemplate(images.captureScreen(), findAndAddIcon).best()) {
+//   back()
+//   sleep(1000)
+// }
+// app.startActivity({
+//   packageName: "com.tencent.mm",
+//   className: "com.tencent.mm.ui.LauncherUI"
+// })
+// log(Object.keys(global))
+// while (currentActivity() !== 'com.tencent.mm.ui.LauncherUI') {
+//   back()
+//   sleep(500)
+// }
+// let meSelectedImage = images.read('./assets/me-selected.jpg') || images.read('wexinAutoLikeSport/assets//me-selected.jpg')
+// let meUnselectedImage = images.read('./assets/me-unselected.jpg') || images.read('wexinAutoLikeSport/assets//me-unselected.jpg')
+// let isFoundHomePage = currentActivity() === 'com.tencent.mm.ui.LauncherUI'
+// while (!isFoundHomePage) {
+//   for (let i = 0; !isFoundHomePage && i < 2; i++) {
+//     let temp_screenCapture = images.captureScreen()
+//     if (
+//       images.matchTemplate(temp_screenCapture, meSelectedImage).best() ||
+//       images.matchTemplate(temp_screenCapture, meUnselectedImage).best()
+//     ) {
+//       isFoundHomePage = true
+//     } else {
+//       sleep(50)
+//     }
+//   }
+
+//   if (!isFoundHomePage) {
+//     back()
+//   }
+// }
+
+// meSelectedImage.recycle()
+// meUnselectedImage.recycle()
+// log(Object.keys(selector()))
+app.startActivity({
+  packageName: "com.tencent.mm",
+  className: "com.tencent.mm.ui.LauncherUI"
+})
+// className('android.widget.TextView')
+//   .depth(3)
+//   .drawingOrder(2)
+//   .text('我')
+//   .waitFor()
+
+depth(0)
+  .packageName('com.tencent.mm')
+  .waitFor()
+
+toast(123)
+
+// importPackage(java.io)
+// log(new java.util.Date())
+
