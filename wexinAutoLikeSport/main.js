@@ -2,7 +2,7 @@
 /* 声明语句时需要特别注意，在两个模块中用 const 声明同一个变量名会报错！ */
 auto.waitFor()
 if(!images.requestScreenCapture(false)){
-  toast("请求截图权限失败")
+  toast('请求截图权限失败')
   exit()
 } else {
   sleep(250)
@@ -24,12 +24,14 @@ setScreenMetrics(designedWidth, designedHeight)
 
 /* 进入到微信 APP 中 */
 app.startActivity({
-  packageName: "com.tencent.mm",
-  className: "com.tencent.mm.ui.LauncherUI"
+  packageName: 'com.tencent.mm',
+  className: 'com.tencent.mm.ui.LauncherUI'
 })
 
-/* 等待微信 APP 打开 */
-waitForPackage('com.tencent.mm')
+/* 等待进入微信中 */
+depth(0)
+  .packageName('com.tencent.mm')
+  .waitFor()
 
 let meSelectedImage = images.read('./assets/me-selected.jpg') || images.read('wexinAutoLikeSport/assets//me-selected.jpg')
 let meUnselectedImage = images.read('./assets/me-unselected.jpg') || images.read('wexinAutoLikeSport/assets//me-unselected.jpg')
