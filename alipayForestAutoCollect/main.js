@@ -43,14 +43,14 @@ idContains('search_button')
 idContains('search_input_box')
   .findOne()
   .setText('蚂蚁森林')
-sleep(250)
+sleep(100)
 
 className('android.widget.FrameLayout')
   .depth(1)
   .desc('搜索')
   .findOne()
   .click()
-sleep(250)
+sleep(100)
 
 className('android.widget.TextView')
   .depth(4)
@@ -137,7 +137,7 @@ while (!isFoundEnd) {
       .depth(7)
       .text('浇水')
       .waitFor()
-    sleep(500)
+    sleep(250)
     
     let energyPoint
     while (energyPoint = images.findColor(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR, { region: [0, 430, 1080, 630] })) {
