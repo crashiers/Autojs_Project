@@ -36,6 +36,19 @@ depth(0)
   .packageName('com.eg.android.AlipayGphone')
   .waitFor()
 
+
+/* 如果打开的支付宝不是主页面，则返回到主页面 */
+while (!className('android.widget.TextView').depth(2).text('首页').findOne(500)) {
+  back()
+}
+
+className('android.widget.TextView')
+  .depth(2)
+  .text('首页')
+  .findOne()
+  .parent()
+  .click()
+
 idContains('search_button')
   .findOne()
   .click()
@@ -43,14 +56,12 @@ idContains('search_button')
 idContains('search_input_box')
   .findOne()
   .setText('蚂蚁森林')
-sleep(100)
 
 className('android.widget.FrameLayout')
   .depth(1)
   .desc('搜索')
   .findOne()
   .click()
-sleep(100)
 
 className('android.widget.TextView')
   .depth(4)
@@ -59,12 +70,12 @@ className('android.widget.TextView')
   .parent()
   .click()
 
-className('android.widget.TextView')
-  .depth(1)
-  .text('蚂蚁森林')
+className('android.widget.Button')
+  .depth(7)
+  .text('背包')
   .waitFor()
-sleep(250)
 
+/* 通过识别能量球图像来点击相对应位置，但因为没有颜色匹配简单，故废弃 */
 // let energyIcon = images.read('assets/energy-icon.jpg') || images.read('alipayForestAutoCollect/assets/energy-icon.jpg')
 // images.matchTemplate(images.captureScreen(), energyIcon, { region: [0, 430, 1080, 630] }).points.filter((point, index, points) => !points.some((_point, _index) => _index < index && _point.x === point.x && _point.y === point.y)).sort((prev, next) => prev.y - next.y).forEach((point) => {
 //   click(point.x + 60, point.y - 40)
@@ -100,12 +111,18 @@ className('android.view.View')
   .textContains('查看更多好友')
   .findOne()
   .click()
+
+className('android.view.View')
+  .depth(10)
+  .text('李小龙')
+  .waitFor()
 sleep(250)
 
 /* 向下滑动寻找可以获取的能量 */
 let pickableIcon = images.read('assets/pickable-icon.jpg') || images.read('alipayForestAutoCollect/assets/pickable-icon.jpg')
 let isFoundEnd = false
 while (!isFoundEnd) {
+  /* 颜色识别因为存在等待获取的能量球标识，所以不能正确识别 */
   // let pickableUserPoint
   // while (pickableUserPoint = images.findColor(images.captureScreen(), PICKABLE_IDENTIFY_COLOR, { region: [950, 0] })) {
   //   click(pickableUserPoint.x, pickableUserPoint.y)
@@ -137,7 +154,7 @@ while (!isFoundEnd) {
       .depth(7)
       .text('浇水')
       .waitFor()
-    sleep(250)
+    sleep(100)
     
     let energyPoint
     while (energyPoint = images.findColor(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR, { region: [0, 430, 1080, 630] })) {
@@ -146,9 +163,9 @@ while (!isFoundEnd) {
     }
   
     back()
-    className('android.widget.TextView')
-      .depth(1)
-      .text('蚂蚁森林')
+    className('android.view.View')
+      .depth(8)
+      .text('总排行榜')
       .waitFor()
     sleep(250)
   })
@@ -159,7 +176,7 @@ while (!isFoundEnd) {
     .findOne(100)) isFoundEnd = true
 
   if (!isFoundEnd) {
-    swipe(deviceWidth / 2, deviceHeight - 300, deviceWidth / 2, 0, 250)
+    swipe(deviceWidth / 2, deviceHeight - 300, deviceWidth / 2, 300, 250)
     sleep(250)
   }
 }
