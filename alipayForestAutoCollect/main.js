@@ -26,49 +26,57 @@ setScreenMetrics(designedWidth, designedHeight)
 const ENERGY_BALL_IDENTIFY_COLOR = '#CFFF5E'
 
 /* 进入到支付宝 APP 中 */
+// app.startActivity({
+//   packageName: 'com.eg.android.AlipayGphone',
+//   className: 'com.alipay.mobile.quinox.LauncherActivity'
+// })
+
+/* 直接进入蚂蚁森林 */
 app.startActivity({
   packageName: 'com.eg.android.AlipayGphone',
-  className: 'com.alipay.mobile.quinox.LauncherActivity'
+  action: "VIEW",
+  data: "alipayqr://platformapi/startapp?saId=60000002"
 })
 
-/* 等待进入支付宝中 */
-depth(0)
-  .packageName('com.eg.android.AlipayGphone')
-  .waitFor()
+/* 因为可以直接进入蚂蚁森林，所以下面这段多步骤进入蚂蚁森林的代码就没用了 */
+// /* 等待进入支付宝中 */
+// depth(0)
+//   .packageName('com.eg.android.AlipayGphone')
+//   .waitFor()
 
 
-/* 如果打开的支付宝不是主页面，则返回到主页面 */
-while (!className('android.widget.TextView').depth(2).text('首页').findOne(500)) {
-  back()
-}
+// /* 如果打开的支付宝不是主页面，则返回到主页面 */
+// while (!className('android.widget.TextView').depth(2).text('首页').findOne(500)) {
+//   back()
+// }
 
-className('android.widget.TextView')
-  .depth(2)
-  .text('首页')
-  .findOne()
-  .parent()
-  .click()
+// className('android.widget.TextView')
+//   .depth(2)
+//   .text('首页')
+//   .findOne()
+//   .parent()
+//   .click()
 
-idContains('search_button')
-  .findOne()
-  .click()
+// idContains('search_button')
+//   .findOne()
+//   .click()
 
-idContains('search_input_box')
-  .findOne()
-  .setText('蚂蚁森林')
+// idContains('search_input_box')
+//   .findOne()
+//   .setText('蚂蚁森林')
 
-className('android.widget.FrameLayout')
-  .depth(1)
-  .desc('搜索')
-  .findOne()
-  .click()
+// className('android.widget.FrameLayout')
+//   .depth(1)
+//   .desc('搜索')
+//   .findOne()
+//   .click()
 
-className('android.widget.TextView')
-  .depth(4)
-  .text('蚂蚁森林')
-  .findOne()
-  .parent()
-  .click()
+// className('android.widget.TextView')
+//   .depth(4)
+//   .text('蚂蚁森林')
+//   .findOne()
+//   .parent()
+//   .click()
 
 className('android.widget.Button')
   .depth(7)
@@ -176,7 +184,12 @@ while (!isFoundEnd) {
     .findOne(100)) isFoundEnd = true
 
   if (!isFoundEnd) {
-    swipe(deviceWidth / 2, deviceHeight - 300, deviceWidth / 2, 300, 250)
+    /* 向下滑动的实现方式由模拟滑动改为调用空间滑动方法实现 */
+    // swipe(deviceWidth / 2, deviceHeight - 300, deviceWidth / 2, 300, 250)
+    className('android.webkit.WebView')
+      .depth(3)
+      .findOne()
+      .scrollForward()
     sleep(250)
   }
 }

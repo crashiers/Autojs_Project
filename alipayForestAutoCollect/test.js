@@ -63,10 +63,17 @@ if(!images.requestScreenCapture(false)){
 //   sleep(250)
 // })
 // pickableIcon.recycle()
-const ENERGY_BALL_IDENTIFY_COLOR = '#CFFF5E'
-let energyPoint
-while (energyPoint = images.findColor(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR, { region: [0, 430, 1080, 630] })) {
-  click(energyPoint.x, energyPoint.y)
-  sleep(250)
-}
+// const ENERGY_BALL_IDENTIFY_COLOR = '#CFFF5E'
+// let energyPoint
+// while (energyPoint = images.findColor(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR, { region: [0, 430, 1080, 630] })) {
+//   click(energyPoint.x, energyPoint.y)
+//   sleep(250)
+// }
+
+app.startActivity({
+  packageName: 'com.eg.android.AlipayGphone',
+  action: "VIEW",
+  data: "alipayqr://platformapi/startapp?saId=60000002"
+})
+
 toast('执行完成')
