@@ -197,6 +197,8 @@ while (!isFoundEnd) {
 pickableIcon.recycle()
 
 /* 执行完毕退出程序返回到最开始的桌面 */
+back()
+sleep(250)
 home()
 sleep(250)
 
