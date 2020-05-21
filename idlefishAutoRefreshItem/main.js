@@ -43,7 +43,7 @@ textContains('我发布的')
 
 /* 阻塞等待页面渲染好 */
 desc('我的问答')
-  .findOne()
+  .waitFor()
 sleep(250)
   
 /* 更新擦亮按钮图标 */
@@ -56,7 +56,7 @@ while (true) {
 
   images.matchTemplate(productCaptureScreenImage, caliangbuttonImage).points.filter((point, index, points) => !points.some((_point, _index) => _index < index && _point.x === point.x && _point.y === point.y)).sort((prev, next) => prev.y - next.y).forEach((point) => {
     click(point.x + 86, point.y + 47) // 这里的偏移是手动测量后设置的
-    sleep(100)
+    sleep(250)
   })
   
   if (!images.matchTemplate(productCaptureScreenImage, endtitleImage).best()) {
@@ -64,7 +64,7 @@ while (true) {
     sleep(250)
   } else {
     /* 这里暂停是为了让最后一屏按钮点击有更长的反应和生效时间 */
-    sleep(250)
+    sleep(1000)
     break
   }
 }
