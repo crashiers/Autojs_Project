@@ -224,21 +224,24 @@ let designedHeight = 2248 // 设计代码时的屏幕高度
 // meSelectedImage.recycle()
 // meUnselectedImage.recycle()
 // log(Object.keys(selector()))
-app.startActivity({
-  packageName: "com.tencent.mm",
-  className: "com.tencent.mm.ui.LauncherUI"
-})
+// app.startActivity({
+//   packageName: "com.tencent.mm",
+//   action: 'VIEW',
+//   className: "com.tencent.mm.plugin.exdevice.ui.ExdeviceRankInfoUI"
+// })
 // className('android.widget.TextView')
 //   .depth(3)
 //   .drawingOrder(2)
 //   .text('我')
 //   .waitFor()
 
-depth(0)
-  .packageName('com.tencent.mm')
-  .waitFor()
+// depth(0)
+//   .packageName('com.tencent.mm')
+//   .waitFor()
 
-toast(123)
+// log(shell("am kill com.tencent.mm", true))
+
+toast('执行完毕')
 
 // importPackage(java.io)
 // log(new java.util.Date())
