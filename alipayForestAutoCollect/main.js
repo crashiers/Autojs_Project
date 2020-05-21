@@ -197,10 +197,8 @@ while (!isFoundEnd) {
 pickableIcon.recycle()
 
 /* 执行完毕退出程序返回到最开始的桌面 */
-for (let i = 0; i < 5; i++) {
-  back()
-  sleep(500)
-}
+home()
+sleep(250)
 
 /* 锁定设备 */
 utils.lockDevice()
