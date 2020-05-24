@@ -70,10 +70,22 @@ if(!images.requestScreenCapture(false)){
 //   sleep(250)
 // }
 
-app.startActivity({
-  packageName: 'com.eg.android.AlipayGphone',
-  action: "VIEW",
-  data: "alipayqr://platformapi/startapp?saId=60000002"
-})
+// app.startActivity({
+//   packageName: 'com.eg.android.AlipayGphone',
+//   action: "VIEW",
+//   data: "alipayqr://platformapi/startapp?saId=60000002"
+// })
+const ENERGY_BALL_IDENTIFY_COLOR_1 = '#F4FFDD'
+const ENERGY_BALL_IDENTIFY_COLOR_2 = '#C4F949'
+const ENERGY_BALL_IDENTIFY_COLOR_3 = '#CFFF5E'
+let point
+while (point = images.findMultiColors(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR_1, [
+  [194, -9, ENERGY_BALL_IDENTIFY_COLOR_2],
+  [105, 41, ENERGY_BALL_IDENTIFY_COLOR_3],
+], { region: [0, 430, 1080, 630] })) {
+  log(point)
+  click(point.x, point.y)
+  sleep(250)
+}
 
 toast('执行完成')
