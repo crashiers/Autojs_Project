@@ -97,7 +97,6 @@ className('android.widget.TextView')
   .depth(2)
   .text('取消')
   .findOne()
-/* 这里暂停一下是为了等待输入框准备好 */
 sleep(250)
 className('android.widget.TextView')
   .depth(2)
@@ -158,8 +157,10 @@ while (!isFoundEnd) {
       }
     })
 
-  swipe(deviceWidth / 2, deviceHeight - 300, deviceWidth / 2, 0, 250)
-  sleep(250)
+  if (!isFoundEnd) {
+    swipe(deviceWidth / 2, deviceHeight - 300, deviceWidth / 2, 0, 250)
+    sleep(250)
+  }
 }
 
 meSelectedImage.recycle()
