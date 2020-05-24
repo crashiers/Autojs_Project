@@ -164,11 +164,22 @@ while (!isFoundEnd) {
       .waitFor()
     sleep(100)
     
-    let energyPoint
-    while (energyPoint = images.findColor(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR, { region: [0, 430, 1080, 630] })) {
-      click(energyPoint.x, energyPoint.y)
-      sleep(250)
-    }
+    /* 相比于颜色识别，控件识别更加准确 */
+    // let energyPoint
+    // while (energyPoint = images.findColor(images.captureScreen(), ENERGY_BALL_IDENTIFY_COLOR, { region: [0, 430, 1080, 630] })) {
+    //   click(energyPoint.x, energyPoint.y)
+    //   sleep(250)
+    // }
+
+    className('android.widget.Button')
+      .depth(7)
+      .textContains('收集能量')
+      .untilFind()
+      .forEach((item) => {
+        let bounds = item.bounds()
+        click(bounds.centerX(), bounds.centerY())
+        sleep(250)
+      })
   
     back()
     className('android.view.View')
